@@ -167,7 +167,12 @@ public class BinarySearchTree {
         return SEARCH(x.left, k)
     else return SEARCH(x.right, k) // recursive case: right subtree
   */
-    public BSTNode search(BSTNode x, int key) {
+ //might not need to pass it a node, set it to root
+ public BSTNode search(int key) {
+     return search(root, key);
+ }
+
+ private BSTNode search(BSTNode x, int key) {
         if (x == null) return null;
         if (key == x.getKey()) return x;
         if (key < x.getKey()) return search(x.getLeft(), key);
@@ -211,10 +216,34 @@ public class BinarySearchTree {
         return size;
     }
     public void preOrder() {
-      preOrder(BSTNode node);
+      preOrder(root);
     }
     private void preOrder(BSTNode node) {
-        
+        if (node != null) {
+           System.out.print(node.toString() + " ");
+           preOrder(node.getLeft());
+           preOrder(node.getRight());
+        }
+    }
+    public void inOrder() {
+        inOrder(root);
+    }
+    private void inOrder(BSTNode node) {
+        if (node != null) {
+            inOrder(node.getLeft());
+            System.out.println(node.toString() + " ");
+            inOrder(node.getRight());
+        }
+    }
+    public void postOrder() {
+        postOrder(root);
+    }
+    private void postOrder(BSTNode node) {
+        if (node != null) {
+            postOrder(node.getLeft());
+            postOrder(node.getRight());
+            System.out.println(node.toString() + " ");
+        }
     }
 
 
