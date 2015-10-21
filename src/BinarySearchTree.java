@@ -138,7 +138,10 @@ public class BinarySearchTree {
       return x
 
   */
- public BSTNode maximum(BSTNode x) {
+ public BSTNode maximum() {
+     return maximum(root);
+ }
+ private BSTNode maximum(BSTNode x) {
     while (x.getRight() != null) {
        x = x.getRight();
     }
@@ -190,6 +193,8 @@ private BSTNode minimum(BSTNode node) {
             x = x.p // go up to parent for next iteration
         return x.p
      */
+
+
     public BSTNode successor(BSTNode x) {
         if (x.getRight() != null) return minimum(x.getRight());
         while(x.getP() != null && x == x.getP().getRight()) x = x.getP();

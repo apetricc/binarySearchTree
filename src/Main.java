@@ -40,16 +40,15 @@ public class Main {
 
     public static void main(String[] args) {
         //BinarySearchTree tree = new BinarySearchTree();
-        int[] arr = {11, 4, 3, 5, 7, 9, 1};
-        System.out.println("Here is the initial array: " + arrayPrinter(arr));
+        int[] arr = {20,15,23,5,7,9,4,16,11,25,24,30,33,29,3,2,19,36,22,28};
+        System.out.println("Here is the initial array: \n" + arrayPrinter(arr));
         System.out.print("Here is the array after bstSort: \n");
         bstSort(arr);
         System.out.println();
-        BinarySearchTree newTree = new BinarySearchTree();
 
+        BinarySearchTree newTree = new BinarySearchTree();
         for (int i = 0; i < arr.length; i++) {
             newTree.insert(new BSTNode(arr[i]));
-
         }
 
 
@@ -60,6 +59,34 @@ public class Main {
         System.out.println("\nHere is the post-order traversal: ");
         newTree.postOrder();
         System.out.println("\nThe size of the tree is: " + newTree.getSize());
+
+
+
+        System.out.println("The minimum of newTree is: " + newTree.minimum()
+                + "\nHere it is with all its successors: ");
+        BSTNode min = newTree.minimum();
+        for(int i = 0; i < newTree.getSize(); i++) {
+            System.out.print(min + " ");
+            min = newTree.successor(min);
+        }
+
+        System.out.println("\nThe maximum of newTree is: " + newTree.maximum()
+                + "\nHere's the max with all its predecessors: ");
+        BSTNode max = newTree.maximum();
+        for (int i = 0; i < newTree.getSize(); i++) {
+            System.out.print(max + " ");
+            max = newTree.predecessor(max);
+        }
+
+
+        System.out.println("\nThe size of the tree is: " + newTree.getSize());
+        newTree.delete(newTree.search(9));
+        System.out.println("\nAfter deleting 9 the size of the tree is: " + newTree.getSize());
+        System.out.println("Here is pre-order traversal of the tree after deleting node with key 9.");
+        newTree.preOrder();
+
+        System.out.print("\nSearching for 11.......\nfound: ");
+        System.out.println(newTree.search(11));
 
     }//main
 

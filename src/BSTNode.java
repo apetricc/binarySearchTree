@@ -89,20 +89,28 @@ public class BSTNode {
         this.left = left;
     }
 
+    /**
+     * getRight gets the right child of the node it is called on
+     * @return the right child node of the node that is having getRight
+     */
     public BSTNode getRight() {
         return right;
     }
 
+    /**
+     * setRight sets the right child of the node it's called on
+     * @param right the node that is being set to be the right child
+     */
     public void setRight(BSTNode right) {
         this.right = right;
     }
 
+    /**
+     * getKey returns the key of the selected node
+     * @return the key
+     */
     public int getKey() {
         return key;
-    }
-
-    public void setKey(int key) {
-        this.key = key;
     }
     @Override
     public String toString() {
