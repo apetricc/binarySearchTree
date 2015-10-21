@@ -22,5 +22,46 @@
 
  console I/O
  */
-public class BstSort {
+public class Main {
+    public static void bstSort(int[] nums) {
+        BinarySearchTree tree = new BinarySearchTree();
+        for (int i = 0; i < nums.length; i++) {
+            tree.insert(new BSTNode(nums[i]));
+        }
+        tree.inOrder();
+    }
+    public static String arrayPrinter(int[] arr) {
+        String result = "";
+        for (int i = 0; i < arr.length; i++) {
+            result += "[" +arr[i] +"]";
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        //BinarySearchTree tree = new BinarySearchTree();
+        int[] arr = {11, 4, 3, 5, 7, 9, 1};
+        System.out.println("Here is the initial array: " + arrayPrinter(arr));
+        System.out.print("Here is the array after bstSort: \n");
+        bstSort(arr);
+        System.out.println();
+        BinarySearchTree newTree = new BinarySearchTree();
+
+        for (int i = 0; i < arr.length; i++) {
+            newTree.insert(new BSTNode(arr[i]));
+
+        }
+
+
+        System.out.println("Here is the pre-order traversal: ");
+        newTree.preOrder();
+        System.out.println("\nHere is the in-order traversal: ");
+        newTree.inOrder();
+        System.out.println("\nHere is the post-order traversal: ");
+        newTree.postOrder();
+        System.out.println("\nThe size of the tree is: " + newTree.getSize());
+
+    }//main
+
+
 }

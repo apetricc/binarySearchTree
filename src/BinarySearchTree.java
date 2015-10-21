@@ -150,11 +150,14 @@ public class BinarySearchTree {
         x = x.left
      return x
  */
- public BSTNode minimum(BSTNode x) {
-    while (x.getLeft() != null) {
-       x = x.getLeft();
+public BSTNode minimum() {
+    return minimum(root);
+}
+private BSTNode minimum(BSTNode node) {
+    while (node.getLeft() != null) {
+       node = node.getLeft();
     }
-    return x;
+    return node;
  }
 
  /**
@@ -231,7 +234,7 @@ public class BinarySearchTree {
     private void inOrder(BSTNode node) {
         if (node != null) {
             inOrder(node.getLeft());
-            System.out.println(node.toString() + " ");
+            System.out.print(node.toString() + " ");
             inOrder(node.getRight());
         }
     }
@@ -242,10 +245,7 @@ public class BinarySearchTree {
         if (node != null) {
             postOrder(node.getLeft());
             postOrder(node.getRight());
-            System.out.println(node.toString() + " ");
+            System.out.print(node.toString() + " ");
         }
     }
-
-
-
 }
