@@ -19,10 +19,29 @@
  1 blank space.
  Implement a getter method for size.
  */
+
+/**
+ * Andrew Petriccione Csci 333 Fall 2015 Professor Whitley
+ * Assignment: Binary Search Trees
+ * The point of this assignment is to implement a binary search tree
+ * and the sorting algorithm we discussed for it.
+ *
+ *
+ */
+
+/**
+ * The BinarySearchTree class uses BSTNode objects to create
+ * a binary search tree and maintains the binary tree property while
+ * allowing for some standard operations on the tree and its nodes.
+ */
 public class BinarySearchTree {
 	private BSTNode root;
 	private int size;
 
+    /**
+     * The constructor for the BinarySearchTree creates a BinarySearchTree
+     * with a null root and size 0.
+     */
  public BinarySearchTree() {
    root = null;
    size = 0;
