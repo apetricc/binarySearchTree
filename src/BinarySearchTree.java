@@ -1,34 +1,9 @@
 /**
- * Created by petriccione on 10/19/15.
- */
-
-/**
- *  30 points: Implement another Java class named BinarySearchTree, based on a binary search tree from the
- slides / textbook. Your primary data field will be a BSTNode named root, to represent the root of the tree.
- It will also contain a data field named size to record the number of elements stored in the tree.
-
- **Insert should increment size, and delete should decrement size.**
-
- Implement a zero-parameter constructor to set the root to NULL, and size to 0.
- Implement all dynamic set operations as described in the slides/textbook: search, minimum, maximum,
- successor, predecessor, insert, and delete. In addition to the pseudocode, insert should also increment
- the size data field, and delete should decrement the size data field.
- You will need a private helper method named transplant, as in the slides/textbook.
- Implement traversal methods named preOrder, inOrder, and postOrder based on the three kinds of traversals
- discussed in the slides/textbook. "Visiting" a node means printing to standard output the key followed by
- 1 blank space.
- Implement a getter method for size.
- */
-
-/**
  * Andrew Petriccione Csci 333 Fall 2015 Professor Whitley
  * Assignment: Binary Search Trees
  * The point of this assignment is to implement a binary search tree
  * and the sorting algorithm we discussed for it.
- *
- *
  */
-
 /**
  * The BinarySearchTree class uses BSTNode objects to create
  * a binary search tree and maintains the binary tree property while
@@ -37,7 +12,6 @@
 public class BinarySearchTree {
 	private BSTNode root;
 	private int size;
-
     /**
      * The constructor for the BinarySearchTree creates a BinarySearchTree
      * with a null root and size 0.
@@ -47,23 +21,10 @@ public class BinarySearchTree {
    size = 0;
  }
 
- /**
-  * INSERT(T,z) // T is our BST, and z is the new node to go into T
-  y = NULL // a “trailing pointer” to the parent of the current node x
-  x = T.root
-  while x != NULL  // move down the tree one level per iteration
-	y = x
-	if z.key < x.key  // BST property tells us to go left
-	  x = x.left
-	else x = x.right  // BST property tells us to to right
-  z.p = y // Loop is done. Location found. Set parent handle of z.
-  if y == NULL // if T was an empty BST, z is the new root of the tree
-	T.root = z
-  elseif z.key < y.key // z’s parent is y, so set child handle to z
-	y.left = z        // z is a left child
-  else y.right = z     // z is a right child
-
-  */
+    /**
+     * Insert the node into the tree.
+     * @param z the node to be inserted
+     */
  public void insert(BSTNode z) {
    BSTNode y = null;
    BSTNode x = root;
@@ -87,18 +48,13 @@ public class BinarySearchTree {
    }
  }//INSERT
 
- /**
-  * TRANSPLANT(T, u, v)
-	if u.p == NULL   // if u was the old root, then v is the new root
-	   T.root = v
-  elseif u == u.p.left // if u was the left child of p,
-	   u.p.left = v      // then v is the new left child of p
-  else u.p.right = v   // else u was right child of p.
-  if v != NULL
-	   v.p = u.p         // set v’s parent to p, the old parent of u
-
-  * */
- public void transplant(BSTNode u, BSTNode v) {
+    /**
+     * Transplant a node from one location in the tree to another
+     * as part of other operations--this is a helper method.
+     * @param u the first node location
+     * @param v the second node location
+     */
+ private void transplant(BSTNode u, BSTNode v) {
     if (u.getP() == null) {
        root = v;
     }
@@ -110,22 +66,12 @@ public class BinarySearchTree {
       v.setP(u.getP());
     }
  }//TRANSPLANT
-/**
- * DELETE(T, z)
-     if z.left == NULL // case 1: z’s left child is NULL
-        TRANSPLANT(T, z, z.right)
-     elseif z.right == NULL // case 2: z’s right child is NULL
-        TRANSPLANT(T, z, z.left)
-     else // case 3: z has both children
-        y = MINIMUM(z.right) // find z’s successor y
-        if y.p != z // case 3b: z’s successor is not its right child
-             TRANSPLANT(T, y, y.right)
-             y.right = z.right
-             y.right.p = y
-        TRANSPLANT(T, z, y) // case 3a, which is also step 2 of case 3b
-        y.left = z.left
-        y.left.p = y
- */
+
+    /**
+     * Delete removes a node from the binary search tree, maintaining the
+     * binary search tree property, and decreasing the size of the tree.
+     * @param z The node to be deleted.
+     */
  public void delete(BSTNode z) {
     if (z.getLeft() == null) {
        transplant(z, z.getRight());
@@ -151,83 +97,84 @@ public class BinarySearchTree {
     }
  }
 
- /**
-  * MAXIMUM(x)
-      while x.right != NULL
-         x = x.right
-      return x
-
-  */
+    /**
+     * Maximum returns the node with the maximum key value in the binary search tree.
+     * @return a call to the private maximum method called on the root.
+     */
  public BSTNode maximum() {
      return maximum(root);
  }
- private BSTNode maximum(BSTNode x) {
-    while (x.getRight() != null) {
-       x = x.getRight();
+
+    /**
+     * Maximum returns the node with the maximum key value in the binary search tree.
+     * @param node The node to begin looking for the maximum.
+     * @return the node with the maximum key.
+     */
+ private BSTNode maximum(BSTNode node) {
+    while (node.getRight() != null) {
+       node = node.getRight();
     }
-    return x;
+    return node;
  }
-/**
- * MINIMUM(x)
-     while x.left != NULL
-        x = x.left
-     return x
- */
+    /**
+     * Minimum returns the node with the minimum key value in the binary search tree.
+     * @return a call to the private minimum method called on the root.
+     */
 public BSTNode minimum() {
     return minimum(root);
 }
-private BSTNode minimum(BSTNode node) {
+    /**
+     * Minimum returns the node with the minimum key value in the binary search tree.
+     * @param node The node to begin looking for the minimum.
+     * @return the node with the minimum key.
+     */
+    private BSTNode minimum(BSTNode node) {
     while (node.getLeft() != null) {
        node = node.getLeft();
     }
     return node;
  }
 
- /**
-  * SEARCH(x, k) // x is the root node of our BST, k is the search key
-    if x == NULL                   // base case: empty subtree
-        return NULL
-    if k == x.key                  // base case: key is at subtree root
-        return x
-    if k < x.key                   // recursive case: left subtree
-        return SEARCH(x.left, k)
-    else return SEARCH(x.right, k) // recursive case: right subtree
-  */
- //might not need to pass it a node, set it to root
+    /**
+     * Search looks for a node with the given key.
+     * @param key The key to search for.
+     * @return a call to the private search method.
+     */
  public BSTNode search(int key) {
      return search(root, key);
  }
 
+    /**
+     * Search looks for a node with the given key.
+     * @param x The node to begin searching the tree at.
+     * @param key The key to search for.
+     * @return the node with the key being searched for, or else null.
+     */
  private BSTNode search(BSTNode x, int key) {
         if (x == null) return null;
         if (key == x.getKey()) return x;
         if (key < x.getKey()) return search(x.getLeft(), key);
         else return search(x.getRight(), key);
     }//SEARCH
-    //successor, predecessor
+
     /**
-     * SUCCESSOR(x)
-        if x.right != NULL // case 1: minimum of right subtree
-            return MINIMUM(x.right)
-        while x.p != NULL and x == x.p.right // case 2: find left parent
-            x = x.p // go up to parent for next iteration
-        return x.p
+     * Successor returns the successor (node with next largest key) of the
+     * node it is called on.
+     * @param x The node to find the successor of.
+     * @return The node that is the successor.
      */
-
-
     public BSTNode successor(BSTNode x) {
         if (x.getRight() != null) return minimum(x.getRight());
         while(x.getP() != null && x == x.getP().getRight()) x = x.getP();
         return x.getP();
     }
-/**
- * PREDECESSOR(x)
-    if x.left != NULL // case 1: maximum of left subtree
-        return MAXIMUM(x.left)
-    while x.p != NULL and x == x.p.left // case 2: find right parent
-        x = x.p // go up to parent for next iteration
-    return x.p
- */
+
+    /**
+     * Predecessor returns the predecessor (node with next smallest key) of the
+     * node it is called on.
+     * @param x The node to find the predecessor of.
+     * @return The node that is the predecessor.
+     */
     public BSTNode predecessor(BSTNode x) {
         if (x.getLeft() != null) return maximum(x.getLeft());
         while(x.getP() != null && x == x.getP().getLeft()) x = x.getP();
@@ -240,12 +187,27 @@ private BSTNode minimum(BSTNode node) {
      1 blank space.
      Implement a getter method for size.
      */
+    /**
+     * getSize returns an integer that is the number of nodes in the binary search tree.
+     * @return the size of the binary search tree
+     */
     public int getSize() {
         return size;
     }
+
+    /**
+     * preOrder returns the nodes in the binary search tree in the order of
+     * a pre-order traversal of the tree.
+     */
     public void preOrder() {
       preOrder(root);
     }
+
+    /**
+     * preOrder returns the nodes in the binary search tree in the order of
+     * a pre-order traversal of the tree.
+     * @param node The node to begin the traversal of the tree on.
+     */
     private void preOrder(BSTNode node) {
         if (node != null) {
            System.out.print(node.toString() + " ");
@@ -253,9 +215,20 @@ private BSTNode minimum(BSTNode node) {
            preOrder(node.getRight());
         }
     }
+
+    /**
+     * inOrder returns the nodes in the binary search tree in the order of
+     * an in-order traversal of the tree.
+     */
     public void inOrder() {
         inOrder(root);
     }
+
+    /**
+     * inOrder returns the nodes in the binary search tree in the order of
+     * an in-order traversal of the tree.
+     * @param node The node to begin the traversal of the tree on.
+     */
     private void inOrder(BSTNode node) {
         if (node != null) {
             inOrder(node.getLeft());
@@ -263,9 +236,18 @@ private BSTNode minimum(BSTNode node) {
             inOrder(node.getRight());
         }
     }
+    /**
+     * postOrder returns the nodes in the binary search tree in the order of
+     * a post-order traversal of the tree.
+     */
     public void postOrder() {
         postOrder(root);
     }
+    /**
+     * postOrder returns the nodes in the binary search tree in the order of
+     * a post-order traversal of the tree.
+     * @param node The node to begin the traversal of the tree on.
+     */
     private void postOrder(BSTNode node) {
         if (node != null) {
             postOrder(node.getLeft());
