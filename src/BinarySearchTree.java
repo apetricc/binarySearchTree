@@ -22,7 +22,7 @@ public class BinarySearchTree {
  }
 
     /**
-     * Insert the node into the tree.
+     * insert inserts a node into the tree.
      * @param z the node to be inserted
      */
  public void insert(BSTNode z) {
@@ -47,9 +47,8 @@ public class BinarySearchTree {
 	size++;
    }
  }//INSERT
-
     /**
-     * Transplant a node from one location in the tree to another
+     * transplant moves a node from one location in the tree to another
      * as part of other operations--this is a helper method.
      * @param u the first node location
      * @param v the second node location
@@ -68,7 +67,7 @@ public class BinarySearchTree {
  }//TRANSPLANT
 
     /**
-     * Delete removes a node from the binary search tree, maintaining the
+     * delete removes a node from the binary search tree, maintaining the
      * binary search tree property, and decreasing the size of the tree.
      * @param z The node to be deleted.
      */
@@ -98,7 +97,7 @@ public class BinarySearchTree {
  }
 
     /**
-     * Maximum returns the node with the maximum key value in the binary search tree.
+     * maximum is a public method that returns the node with the maximum key value in the binary search tree.
      * @return a call to the private maximum method called on the root.
      */
  public BSTNode maximum() {
@@ -106,7 +105,9 @@ public class BinarySearchTree {
  }
 
     /**
-     * Maximum returns the node with the maximum key value in the binary search tree.
+     * maximum is the private helper method to the public maximum method
+     * that returns the node with the maximum key value in the binary search tree--it is
+     * called on the root of a binary search tree.
      * @param node The node to begin looking for the maximum.
      * @return the node with the maximum key.
      */
@@ -117,14 +118,16 @@ public class BinarySearchTree {
     return node;
  }
     /**
-     * Minimum returns the node with the minimum key value in the binary search tree.
+     * minimum is a public method that returns the node with the minimum key value in a binary search tree.
      * @return a call to the private minimum method called on the root.
      */
 public BSTNode minimum() {
     return minimum(root);
 }
     /**
-     * Minimum returns the node with the minimum key value in the binary search tree.
+     * minimum is the private helper method to the public minumum method
+     * that returns the node with the minimum key value in the binary
+     * search tree--it is called on the root of a binary search tree.
      * @param node The node to begin looking for the minimum.
      * @return the node with the minimum key.
      */
@@ -136,16 +139,18 @@ public BSTNode minimum() {
  }
 
     /**
-     * Search looks for a node with the given key.
+     * search is a public method that looks for a node with the given key.
      * @param key The key to search for.
-     * @return a call to the private search method.
+     * @return a call to the private search method, called on the root & the key given.
      */
  public BSTNode search(int key) {
      return search(root, key);
  }
 
     /**
-     * Search looks for a node with the given key.
+     * search is the private helper method to the public search method that
+     * looks for a node with the given key--it is called on the root of a binary
+     * search tree by the public method.
      * @param x The node to begin searching the tree at.
      * @param key The key to search for.
      * @return the node with the key being searched for, or else null.
@@ -158,7 +163,7 @@ public BSTNode minimum() {
     }//SEARCH
 
     /**
-     * Successor returns the successor (node with next largest key) of the
+     * successor returns the successor (node with next largest key) of the
      * node it is called on.
      * @param x The node to find the successor of.
      * @return The node that is the successor.
@@ -170,7 +175,7 @@ public BSTNode minimum() {
     }
 
     /**
-     * Predecessor returns the predecessor (node with next smallest key) of the
+     * predecessor returns the predecessor (node with next smallest key) of the
      * node it is called on.
      * @param x The node to find the predecessor of.
      * @return The node that is the predecessor.
@@ -180,13 +185,6 @@ public BSTNode minimum() {
         while(x.getP() != null && x == x.getP().getLeft()) x = x.getP();
         return x.getP();
     }
-
-    /**
-     * Implement traversal methods named preOrder, inOrder, and postOrder based on the three kinds of traversals
-     discussed in the slides/textbook. "Visiting" a node means printing to standard output the key followed by
-     1 blank space.
-     Implement a getter method for size.
-     */
     /**
      * getSize returns an integer that is the number of nodes in the binary search tree.
      * @return the size of the binary search tree
@@ -196,15 +194,18 @@ public BSTNode minimum() {
     }
 
     /**
-     * preOrder returns the nodes in the binary search tree in the order of
-     * a pre-order traversal of the tree.
+     * preOrder is a public method that calls the private preOrder method
+     * which returns the nodes of the binary search tree
+     * in the order of a pre-order traversal of the tree.
      */
     public void preOrder() {
       preOrder(root);
     }
 
     /**
-     * preOrder returns the nodes in the binary search tree in the order of
+     * preOrder is the private helper method to the public
+     * preOrder method which
+     * returns the nodes in the binary search tree in the order of
      * a pre-order traversal of the tree.
      * @param node The node to begin the traversal of the tree on.
      */
@@ -217,7 +218,8 @@ public BSTNode minimum() {
     }
 
     /**
-     * inOrder returns the nodes in the binary search tree in the order of
+     * inOrder is a public method that calls the private inOrder method
+     * which returns the nodes in the binary search tree in the order of
      * an in-order traversal of the tree.
      */
     public void inOrder() {
@@ -225,7 +227,8 @@ public BSTNode minimum() {
     }
 
     /**
-     * inOrder returns the nodes in the binary search tree in the order of
+     * inOrder is the private helper method to the public inOrder method
+     * that returns the nodes in the binary search tree in the order of
      * an in-order traversal of the tree.
      * @param node The node to begin the traversal of the tree on.
      */
@@ -237,14 +240,16 @@ public BSTNode minimum() {
         }
     }
     /**
-     * postOrder returns the nodes in the binary search tree in the order of
-     * a post-order traversal of the tree.
+     * postOrder is a method that calls the private postOrder method on the
+     * root of the binary search tree which returns the nodes in the binary
+     * search tree in the order of a post-order traversal of the tree.
      */
     public void postOrder() {
         postOrder(root);
     }
     /**
-     * postOrder returns the nodes in the binary search tree in the order of
+     * postOrder is a private helper method to the public postOrder method
+     * which returns the nodes in the binary search tree in the order of
      * a post-order traversal of the tree.
      * @param node The node to begin the traversal of the tree on.
      */

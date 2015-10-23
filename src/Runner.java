@@ -126,7 +126,7 @@ public class Runner {
         System.out.println("Here is an in-order traversal of the tree after deleting several nodes.");
         newTree.inOrder();
 /**
- * Finally, invoke bstSort on at least 5 different arrays of different lengths
+ * invoke bstSort on at least 5 different arrays of different lengths
  with different values, and print the results to the console. The results of
  bstSort should always print in sorted order.
  */
