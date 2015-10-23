@@ -129,8 +129,8 @@ public class BinarySearchTree {
  public void delete(BSTNode z) {
     if (z.getLeft() == null) {
        transplant(z, z.getRight());
-       size--;
-    }
+        size--;
+   }
     else if (z.getRight() == null) {
        transplant(z, z.getLeft());
        size--;
@@ -145,7 +145,8 @@ public class BinarySearchTree {
        }
        transplant(z, y);
        y.setLeft(z.getLeft());
-       y.getP().setLeft(y);
+       //y.getP().setLeft(y);
+        y.getLeft().setP(y);
        size--;
     }
  }
