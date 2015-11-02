@@ -74,26 +74,27 @@ public class BinarySearchTree {
  public void delete(BSTNode z) {
     if (z.getLeft() == null) {
        transplant(z, z.getRight());
-        size--;
+        
    }
     else if (z.getRight() == null) {
        transplant(z, z.getLeft());
-       size--;
+       
     }
     else {
        BSTNode y = minimum(z.getRight());
        if (y.getP() != z) {
           transplant(y, y.getRight());
           y.setRight(z.getRight());
-          y.getP().setRight(y);
-          size--;
+          //y.getP().setRight(y);
+          y.getRight().setP(y);
+       
        }
        transplant(z, y);
        y.setLeft(z.getLeft());
        //y.getP().setLeft(y);
         y.getLeft().setP(y);
-       size--;
     }
+    size--;
  }
 
     /**
